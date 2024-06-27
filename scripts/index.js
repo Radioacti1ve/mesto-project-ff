@@ -15,12 +15,14 @@ const cardTempate = document.querySelector('#card-template').content;
 function addCard(item) {
   const cardElement = cardTempate.querySelector('.card').cloneNode(true);
   const buttonDelete = cardElement.querySelector('.card__delete-button');
+  const image = cardElement.querySelector('.card__image');
 
   cardElement.querySelector('.card__title').textContent = item.name;
-  cardElement.querySelector('.card__image').src = item.link;
-  cardContainer.append(cardElement);
+  image.src = item.link;
+  image.alt = item.name;
 
   buttonDelete.addEventListener('click', deleteCard);
+  return cardElement;
 }
 
 function deleteCard(evt) {
@@ -29,5 +31,5 @@ function deleteCard(evt) {
 }
 
 initialCards.forEach(item => {
-  addCard(item);
+  cardContainer.append(addCard(item));
 });
