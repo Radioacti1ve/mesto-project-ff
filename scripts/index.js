@@ -15,11 +15,11 @@ const cardTempate = document.querySelector('#card-template').content;
 function addCard(item) {
   const cardElement = cardTempate.querySelector('.card').cloneNode(true);
   const buttonDelete = cardElement.querySelector('.card__delete-button');
-  const image = cardElement.querySelector('.card__image');
+  const cardImage = cardElement.querySelector('.card__image');
 
   cardElement.querySelector('.card__title').textContent = item.name;
-  image.src = item.link;
-  image.alt = item.name;
+  cardImage.src = item.link;
+  cardImage.alt = item.name;
 
   buttonDelete.addEventListener('click', deleteCard);
   return cardElement;
