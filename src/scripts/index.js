@@ -1,16 +1,13 @@
 import '../pages/index.css'; 
 import {initialCards} from './cards.js'
 import {createCard} from './card.js';
-import {appearPopup, setSrcCard, handleFormCardSubmit, handleFormProfileSubmit, setInfoFromProfile, formProfile, formCard, popupTypeEdit, popupTypeNewCard} from './modal.js';
-
-const container = document.querySelector('.content');
-const cardContainer = container.querySelector('.places__list');
+import {appearPopup, setSrcCard, handleFormCardSubmit, handleFormProfileSubmit, setInfoFromProfile, cardContainer, formProfile, formCard, popupTypeEdit, popupTypeNewCard} from './modal.js';
 
 //search buttons and popups
 const popup = document.querySelectorAll('.popup');
-const profileEditButton = container.querySelector('.profile__edit-button');
-const popupTypeNewCardButton = container.querySelector('.profile__add-button');
-const popupImages = container.querySelector('.places__list');
+const profileEditButton = document.querySelector('.profile__edit-button');
+const popupTypeNewCardButton = document.querySelector('.profile__add-button');
+const popupImages = document.querySelector('.places__list');
 
 //create and add cards
 initialCards.forEach(item => {

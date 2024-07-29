@@ -1,11 +1,12 @@
-export {appearPopup, setSrcCard, handleFormCardSubmit, handleFormProfileSubmit, setInfoFromProfile, formProfile, formCard, popupTypeEdit, popupTypeNewCard};
+export {appearPopup, setSrcCard, handleFormCardSubmit, handleFormProfileSubmit, setInfoFromProfile, cardContainer, formProfile, formCard, popupTypeEdit, popupTypeNewCard};
 import {createCard} from "./card.js";
+
+const cardContainer = document.querySelector('.places__list');
 
 const popupTypeEdit = document.querySelector('.popup_type_edit');
 const popupTypeNewCard = document.querySelector('.popup_type_new-card');
 const popupTypeImage = document.querySelector('.popup_type_image');
 
-const cardContainer = document.querySelector('.places__list');
 const formProfile = document.forms['edit-profile'];
 const formCard = document.forms['new-place'];
 
@@ -63,6 +64,7 @@ function handleFormCardSubmit(evt) {
   obj.link = formLink.value;
   cardContainer.append(createCard(obj));
   disappearPopup(popupTypeNewCard);
+  formCard.reset();
 }
 
 function setInfoFromProfile() {
