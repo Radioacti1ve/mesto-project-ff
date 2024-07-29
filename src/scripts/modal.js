@@ -3,6 +3,7 @@ import {createCard} from "./card.js";
 
 const popupTypeEdit = document.querySelector('.popup_type_edit');
 const popupTypeNewCard = document.querySelector('.popup_type_new-card');
+const popupTypeImage = document.querySelector('.popup_type_image');
 
 const cardContainer = document.querySelector('.places__list');
 const formProfile = document.forms['edit-profile'];
@@ -39,10 +40,11 @@ function disappearPopup(card) {
 }
 
 function setSrcCard(evt) {
-  const popupTypeImage = document.querySelector('.popup_type_image');
   if(evt.target.classList.contains('card__image')) {
     const image = document.querySelector('.popup__image');
+    const caption = document.querySelector('.popup__caption');
     image.src = evt.srcElement.currentSrc;
+    caption.textContent = evt.srcElement.alt;
     appearPopup(popupTypeImage);
   }
 }
