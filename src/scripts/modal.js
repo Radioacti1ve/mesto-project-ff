@@ -1,75 +1,45 @@
-export {appearPopup, setSrcCard, handleFormCardSubmit, handleFormProfileSubmit, setInfoFromProfile, cardContainer, formProfile, formCard, popupTypeEdit, popupTypeNewCard};
-import {createCard} from "./card.js";
+export {appearPopup, disappearPopup, cardContainer, formProfile, formCard};
 
 const cardContainer = document.querySelector('.places__list');
-
-const popupTypeEdit = document.querySelector('.popup_type_edit');
-const popupTypeNewCard = document.querySelector('.popup_type_new-card');
-const popupTypeImage = document.querySelector('.popup_type_image');
 
 const formProfile = document.forms['edit-profile'];
 const formCard = document.forms['new-place'];
 
-const nameInput = formProfile.elements.name;
-const jobInput = formProfile.elements.description;
-const placeName = formCard.elements['place-name'];
-const formLink = formCard.elements.link;
+let openedPopup;
+let openedPopupButton;
 
-const profileTitle = document.querySelector('.profile__title');
-const profileDescription = document.querySelector('.profile__description');
-
-function appearPopup(popup) {
-  const popupCloseButton = popup.querySelector('.popup__close');
+function appearPopup(popup, popupButton) {
+  openedPopup = popup;
+  openedPopupButton = popupButton;
   popup.classList.add('popup_is-opened');
 
-  popupCloseButton.addEventListener('click', eventHandler);
-  popup.addEventListener('click', eventHandler);
-  document.addEventListener('keydown', eventHandler);
+  popupButton.addEventListener('click', eventHandler);
+  popup.addEventListener('click', eventHandlerOverlay);
+  document.addEventListener('keydown', eventHandlerEsc);
+}
 
-  function eventHandler(evt) {
-    if(evt.target === evt.currentTarget || evt.key === 'Escape') {
-      disappearPopup(popup);
-      popupCloseButton.removeEventListener('click', eventHandler);
-      popup.removeEventListener('click', eventHandler);
-      document.removeEventListener('keydown', eventHandler);
-    }
+function eventHandler() {
+  disappearPopup(openedPopup, openedPopupButton);
+}
+
+function eventHandlerOverlay(evt) {
+  if(evt.target === evt.currentTarget){
+    disappearPopup(openedPopup, openedPopupButton);
   }
 }
 
-function disappearPopup(card) {
-  card.classList.remove('popup_is-opened');
-}
-
-function setSrcCard(evt) {
-  if(evt.target.classList.contains('card__image')) {
-    const image = document.querySelector('.popup__image');
-    const caption = document.querySelector('.popup__caption');
-    image.src = evt.srcElement.currentSrc;
-    caption.textContent = evt.srcElement.alt;
-    appearPopup(popupTypeImage);
+function eventHandlerEsc(evt) {
+  if(evt.key === 'Escape') {
+    disappearPopup(openedPopup, openedPopupButton);
   }
 }
 
-function handleFormProfileSubmit(evt) {
-  evt.preventDefault(); 
-  profileTitle.textContent = nameInput.value;
-  profileDescription.textContent = jobInput.value;
-  disappearPopup(popupTypeEdit);
-}
+function disappearPopup(popup, popupButton) {
+  popup.classList.remove('popup_is-opened');
+  popupButton.removeEventListener('click', eventHandler);
+  popup.removeEventListener('click', eventHandlerOverlay);
+  document.removeEventListener('keydown', eventHandlerEsc);
 
-function handleFormCardSubmit(evt) {
-  evt.preventDefault(); 
-  const obj = {};
-  obj.name = placeName.value;
-  obj.link = formLink.value;
-  cardContainer.append(createCard(obj));
-  disappearPopup(popupTypeNewCard);
-  formCard.reset();
-}
-
-function setInfoFromProfile() {
-  const name = formProfile.elements.name;
-  const description = formProfile.elements.description;
-  name.value = profileTitle.textContent;
-  description.value = profileDescription.textContent;
+  openedPopup = undefined;
+  openedPopupButton = undefined;
 }
