@@ -1,6 +1,5 @@
-export {appearPopup, disappearPopup, cardContainer, formProfile, formCard};
+export {appearPopup, disappearPopup, formProfile, formCard};
 
-const cardContainer = document.querySelector('.places__list');
 
 const formProfile = document.forms['edit-profile'];
 const formCard = document.forms['new-place'];
@@ -13,12 +12,12 @@ function appearPopup(popup, popupButton) {
   openedPopupButton = popupButton;
   popup.classList.add('popup_is-opened');
 
-  popupButton.addEventListener('click', eventHandler);
+  popupButton.addEventListener('click', eventHandlerPopupButton);
   popup.addEventListener('click', eventHandlerOverlay);
   document.addEventListener('keydown', eventHandlerEsc);
 }
 
-function eventHandler() {
+function eventHandlerPopupButton() {
   disappearPopup(openedPopup, openedPopupButton);
 }
 
@@ -36,7 +35,7 @@ function eventHandlerEsc(evt) {
 
 function disappearPopup(popup, popupButton) {
   popup.classList.remove('popup_is-opened');
-  popupButton.removeEventListener('click', eventHandler);
+  popupButton.removeEventListener('click', eventHandlerPopupButton);
   popup.removeEventListener('click', eventHandlerOverlay);
   document.removeEventListener('keydown', eventHandlerEsc);
 

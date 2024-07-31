@@ -1,9 +1,11 @@
 import '../pages/index.css'; 
 import {initialCards} from './cards.js'
 import {createCard, deleteCard, likeCard} from './card.js';
-import {appearPopup, disappearPopup, cardContainer, formProfile, formCard} from './modal.js';
+import {appearPopup, disappearPopup, formProfile, formCard} from './modal.js';
 
 //search buttons and popups
+const cardContainer = document.querySelector('.places__list');
+
 const popup = document.querySelectorAll('.popup');
 const profileEditButton = document.querySelector('.profile__edit-button');
 const popupTypeNewCardButton = document.querySelector('.profile__add-button');
@@ -33,7 +35,7 @@ const description = formProfile.elements.description;
 
 //create and add cards
 initialCards.forEach(item => {
-  cardContainer.append(createCard(item, deleteCard, likeCard, setSrcCard));
+  cardContainer.append(createCard(item, deleteCard, likeCard, openImage));
 });
 
 //add animation to popups
@@ -53,7 +55,7 @@ function handleFormCardSubmit(evt) {
   const obj = {};
   obj.name = placeName.value;
   obj.link = formLink.value;
-  cardContainer.append(createCard(obj, deleteCard, likeCard, setSrcCard));
+  cardContainer.append(createCard(obj, deleteCard, likeCard, openImage));
   disappearPopup(popupTypeNewCard, popupTypeCardButton);
   formCard.reset();
 }
@@ -63,7 +65,7 @@ function setInfoFromProfile() {
   description.value = profileDescription.textContent;
 }
 
-function setSrcCard(evt) {
+function openImage(evt) {
   image.src = evt.srcElement.currentSrc;
   image.alt = evt.srcElement.alt;
   caption.textContent = evt.srcElement.alt;
