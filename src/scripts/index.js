@@ -1,7 +1,7 @@
 import '../pages/index.css'; 
 import {initialCards} from './cards.js'
 import {createCard, deleteCard, likeCard} from './card.js';
-import {appearPopup, disappearPopup, formProfile, formCard} from './modal.js';
+import {appearPopup, disappearPopup} from './modal.js';
 
 //search buttons and popups
 const cardContainer = document.querySelector('.places__list');
@@ -22,6 +22,9 @@ const image = document.querySelector('.popup__image');
 const caption = document.querySelector('.popup__caption');
 
 //data for forms
+const formProfile = document.forms['edit-profile'];
+const formCard = document.forms['new-place'];
+
 const nameInput = formProfile.elements.name;
 const jobInput = formProfile.elements.description;
 const placeName = formCard.elements['place-name'];

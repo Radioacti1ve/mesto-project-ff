@@ -1,7 +1,4 @@
-export {appearPopup, disappearPopup, formProfile, formCard};
-
-const formProfile = document.forms['edit-profile'];
-const formCard = document.forms['new-place'];
+export {appearPopup, disappearPopup};
 
 let openedPopup;
 let openedPopupButton;
