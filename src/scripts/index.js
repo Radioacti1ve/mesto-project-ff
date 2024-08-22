@@ -82,15 +82,15 @@ const validationConfig = {
   errorClass: 'popup__error_visible'
 }
 
-setNameAndJob(profileTitle, profileDescription, profileAvatar);
 enableValidation(validationConfig);
 
-//create and add cards
-getInitialCards().
-  then(res => {
-      res.forEach(item => {
+Promise.all([getUserInfo(), getInitialCards()])
+  .then(([userInfo, cards]) => {
+    setNameAndJob(profileTitle, profileDescription, profileAvatar);
+    
+    cards.forEach(item => {
       cardContainer.append(createCard(item, handleDeleteCard, handleLikeCard, openImage, userId));
-    })
+  })
   })
   .catch(err => console.error(err));
 
