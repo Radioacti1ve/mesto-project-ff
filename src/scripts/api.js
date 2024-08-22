@@ -6,8 +6,7 @@ export {
   delereCardFromApi,
   likeCardToApi,
   dislikeCardToApi,
-  setNewAvatar,
-  renderLoading
+  setNewAvatar
 };
 
 function getInitialCards() {
@@ -160,15 +159,6 @@ function setNewAvatar(avatarLink) {
       return Promise.reject(`Что-то пошло не так: ${res.status}`);
     })
     .catch(err => console.error(err));
-}
-
-function renderLoading(flag) {
-  const submitButton = document.querySelector('.popup_is-opened').querySelector('.popup__button'); 
-  if(flag) {
-    submitButton.textContent = 'Сохранение...';
-  } else {
-    submitButton.textContent = 'Сохранить';
-  }
 }
 
 /*

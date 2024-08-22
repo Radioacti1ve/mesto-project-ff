@@ -1,6 +1,7 @@
 export {
   clearValidation,
-  enableValidation
+  enableValidation,
+  resetButtonState
 };
 
 function showError(formElement, inputElement, errorMessage, inputErrorClass, errorClass) {

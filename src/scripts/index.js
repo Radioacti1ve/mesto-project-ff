@@ -13,7 +13,8 @@ from './modal.js';
 
 import {
   clearValidation,
-  enableValidation
+  enableValidation,
+  resetButtonState
 }
 from './validation.js';
 
@@ -26,7 +27,6 @@ import {
   likeCardToApi,
   dislikeCardToApi,
   setNewAvatar,
-  renderLoading
 }
 from './api.js';
 
@@ -87,13 +87,22 @@ enableValidation(validationConfig);
 Promise.all([getUserInfo(), getInitialCards()])
   .then(([userInfo, cards]) => {
     setNameAndJob(profileTitle, profileDescription, profileAvatar);
-    
+
     cards.forEach(item => {
       cardContainer.append(createCard(item, handleDeleteCard, handleLikeCard, openImage, userId));
   })
   })
   .catch(err => console.error(err));
 
+  function renderLoading(flag) {
+    const submitButton = document.querySelector('.popup_is-opened').querySelector('.popup__button'); 
+    if(flag) {
+      resetButtonState(submitButton, 'popup__button_disabled');
+      submitButton.textContent = 'Сохранение...';
+    } else {
+      submitButton.textContent = 'Сохранить';
+    }
+  }
 //add animation to popups
 popup.forEach((item) => {
   item.classList.add('popup_is-animated');
