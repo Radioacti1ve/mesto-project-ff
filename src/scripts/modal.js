@@ -1,4 +1,7 @@
-export {appearPopup, disappearPopup};
+export {
+  appearPopup,
+  disappearPopup
+};
 
 let openedPopup;
 let openedPopupButton;

@@ -7,3 +7,7 @@ https://github.com/Radioacti1ve/mesto-project-ff.git
 npm i webpack --save-dev
 
 npm run build
+
+## link:
+
+https://radioacti1ve.github.io/mesto-project-ff/
