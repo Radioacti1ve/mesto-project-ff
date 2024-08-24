@@ -30,8 +30,7 @@ function getInitialCards() {
   })
     .then((res) => {
       return getResponseData(res);
-    })
-    .catch((err) => console.error(err));
+    });
 }
 
 function getUserInfo() {
@@ -43,8 +42,7 @@ function getUserInfo() {
   })
     .then((res) => {
       return getResponseData(res);
-    })
-    .catch((err) => console.error(err));
+    });
 }
 
 function setUserInfo(name, about) {
@@ -61,8 +59,7 @@ function setUserInfo(name, about) {
   })
     .then((res) => {
       return getResponseData(res);
-    })
-    .catch((err) => console.error(err));
+    });
 }
 
 function addCardToApi(name, link) {
@@ -80,8 +77,7 @@ function addCardToApi(name, link) {
   })
     .then((res) => {
       return getResponseData(res);
-    })
-    .catch((err) => console.error(err));
+    });
 }
 
 function delereCardFromApi(CardId) {
@@ -94,8 +90,7 @@ function delereCardFromApi(CardId) {
   })
     .then((res) => {
       return getResponseData(res);
-    })
-    .catch((err) => console.error(err));
+    });
 }
 
 function likeCardToApi(cardId) {
@@ -108,8 +103,7 @@ function likeCardToApi(cardId) {
   })
     .then((res) => {
       return getResponseData(res);
-    })
-    .catch((err) => console.error(err));
+    });
 }
 
 function dislikeCardToApi(cardId) {
@@ -122,8 +116,7 @@ function dislikeCardToApi(cardId) {
   })
     .then((res) => {
       return getResponseData(res);
-    })
-    .catch((err) => console.error(err));
+    });
 }
 
 function setNewAvatar(avatarLink) {
@@ -139,8 +132,7 @@ function setNewAvatar(avatarLink) {
   })
     .then((res) => {
       return getResponseData(res);
-    })
-    .catch((err) => console.error(err));
+    });
 }
 
 /*
